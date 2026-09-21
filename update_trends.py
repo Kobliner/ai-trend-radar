@@ -86,10 +86,10 @@ success = False
 
 for attempt in range(max_retries):
     try:
-        print(f"Attempt {attempt + 1}: Calling Gemini API...")
-        # 가장 안정적이고 쾌적한 gemini-2.5-flash 모델 사용
+        print(f"Attempt {attempt + 1}: Calling Gemini API (gemini-3.6-flash)...")
+        # 최신 무료 지원 모델 명칭 사용
         response = client.models.generate_content(
-            model="gemini-2.5-flash",
+            model="gemini-3.6-flash",
             contents=prompt_template,
         )
         
@@ -108,15 +108,16 @@ for attempt in range(max_retries):
         with open("trends.json", "w", encoding="utf-8") as f:
             json.dump(parsed_data, f, ensure_ascii=False, indent=2)
 
-        print("Successfully updated trends.json using Gemini!")
+        print("Successfully updated trends.json using Gemini 3.6 Flash!")
         success = True
         break
 
     except Exception as e:
         print(f"Attempt {attempt + 1} failed: {type(e).__name__} - {e}")
         if attempt < max_retries - 1:
-            print("Waiting 10 seconds before retrying...")
-            time.sleep(10)
+            # 503 에러 완화를 위해 대기 시간을 15초로 넉넉하게 부여
+            print("Waiting 15 seconds before retrying...")
+            time.sleep(15)
         else:
             print("All retry attempts failed.")
             exit(1)
