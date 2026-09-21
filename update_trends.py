@@ -2,8 +2,13 @@ import json
 import os
 from openai import OpenAI
 
-# OpenAI 클라이언트 초기화
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+api_key = os.environ.get("OPENAI_API_KEY")
+if not api_key:
+    print("Error: OPENAI_API_KEY environment variable is missing!")
+    exit(1)
+
+# 클라이언트 초기화 및 타임아웃 설정 (30초)
+client = OpenAI(api_key=api_key, timeout=30.0)
 
 prompt_template = """
 당신은 최고의 AI 트렌드 분석가입니다. 
@@ -77,6 +82,7 @@ prompt_template = """
 """
 
 try:
+    print("Calling OpenAI API to generate trends...")
     response = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[{"role": "user", "content": prompt_template}],
@@ -85,7 +91,6 @@ try:
     
     content = response.choices[0].message.content.strip()
     
-    # 마크다운 백틱 제거
     if content.startswith("```json"):
         content = content[7:]
     if content.startswith("```"):
@@ -102,5 +107,5 @@ try:
     print("Successfully updated trends.json!")
 
 except Exception as e:
-    print(f"Error generating trends: {e}")
+    print(f"Error generating trends: {type(e).__name__} - {e}")
     exit(1)
