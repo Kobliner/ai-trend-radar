@@ -1,14 +1,14 @@
 import json
 import os
-from openai import OpenAI
+from google import genai
 
-api_key = os.environ.get("OPENAI_API_KEY")
+api_key = os.environ.get("GEMINI_API_KEY")
 if not api_key:
-    print("Error: OPENAI_API_KEY environment variable is missing!")
+    print("Error: GEMINI_API_KEY environment variable is missing!")
     exit(1)
 
-# 클라이언트 초기화 및 타임아웃 설정 (30초)
-client = OpenAI(api_key=api_key, timeout=30.0)
+# 구글 Gemini 클라이언트 초기화
+client = genai.Client(api_key=api_key)
 
 prompt_template = """
 당신은 최고의 AI 트렌드 분석가입니다. 
@@ -82,14 +82,14 @@ prompt_template = """
 """
 
 try:
-    print("Calling OpenAI API to generate trends...")
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[{"role": "user", "content": prompt_template}],
-        temperature=0.7,
+    print("Calling Gemini API to generate trends...")
+    # 무료로 사용 가능한 Gemini Flash 모델 호출
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        contents=prompt_template,
     )
     
-    content = response.choices[0].message.content.strip()
+    content = response.text.strip()
     
     if content.startswith("```json"):
         content = content[7:]
@@ -104,7 +104,7 @@ try:
     with open("trends.json", "w", encoding="utf-8") as f:
         json.dump(parsed_data, f, ensure_ascii=False, indent=2)
 
-    print("Successfully updated trends.json!")
+    print("Successfully updated trends.json using Gemini!")
 
 except Exception as e:
     print(f"Error generating trends: {type(e).__name__} - {e}")
