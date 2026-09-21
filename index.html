@@ -141,12 +141,6 @@
  <header>
     <h1 id="site-title">⚡ Real-time AI Trend Radar</h1>
     <p id="site-subtitle">공개된 퍼블릭 신호를 기반으로 실무에서 가장 주목받는 AI 질문과 프롬프트를 확인하세요.</p>
-    
-   <!-- 언어 변경 버튼 (눈에 띄는 스타일 적용) -->
-<div style="margin-top: 15px; display: flex; gap: 8px;">
-    <button onclick="switchLanguage('ko')" style="padding: 8px 16px; cursor: pointer; border-radius: 6px; border: 1px solid #4f46e5; background: #4f46e5; color: #fff; font-weight: bold;">한국어</button>
-    <button onclick="switchLanguage('en')" style="padding: 8px 16px; cursor: pointer; border-radius: 6px; border: 1px solid #d1d5db; background: #fff; color: #374151; font-weight: bold;">English</button>
-</div>
 </header>
 
     <div class="container">
@@ -249,29 +243,27 @@
   // 1. 다국어 딕셔너리 데이터 정의
   const translations = {
     ko: {
-      title: "실시간 AI 트렌드",
-      subtitle: "최신 AI 소식을 확인하세요"
+      title: "⚡ Real-time AI Trend Radar",
+      subtitle: "공개된 퍼블릭 신호를 기반으로 실무에서 가장 주목받는 AI 질문과 프롬프트를 확인하세요."
     },
     en: {
-      title: "Real-time AI Trends",
-      subtitle: "Discover the latest AI updates"
+      title: "⚡ Real-time AI Trend Radar",
+      subtitle: "Discover the most trending AI questions and prompts based on public signals."
     }
   };
 
-  // 2. 언어 변경 함수
-  function changeLanguage(lang) {
-    const t = translations[lang] || translations.ko;
+  // 2. 언어 자동 적용 함수
+  function initLanguage() {
+    // 브라우저 기본 언어 감지 (한국어가 아니면 영어 기본 적용)
+    const userLang = navigator.language.startsWith("ko") ? "ko" : "en";
+    const t = translations[userLang] || translations.ko;
     
     document.getElementById("site-title").innerText = t.title;
     document.getElementById("site-subtitle").innerText = t.subtitle;
   }
 
-  // 페이지가 처음 열릴 때 사용자의 브라우저 언어 확인 (한국어 외에는 영어 기본 적용)
-  const userLang = navigator.language.startsWith("ko") ? "ko" : "en";
-  changeLanguage(userLang);
-
-  // 버튼에서 호출할 수 있도록 전역 함수 등록
-  window.switchLanguage = changeLanguage;
+  // 페이지 로드 시 실행
+  window.addEventListener("DOMContentLoaded", initLanguage);
 </script>
 </body>
 </html>
