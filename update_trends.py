@@ -15,7 +15,9 @@ prompt_template = """
 다음 6개 카테고리(개발 & 코드, 비즈니스 & 문서, 콘텐츠 기획, 스포츠, 게임, 일상) 각각에 대해, 
 현재 시점에서 가장 주목받는 최신 AI 활용 주제와 실무에서 바로 쓸 수 있는 프롬프트 5개씩을 JSON 포맷으로 생성해주세요.
 
-반드시 아래의 JSON 구조를 정확히 지켜주세요. 마크다운 백틱(```json 등) 없이 순수 JSON 문자열만 반환해야 합니다.
+**중요 규칙:**
+1. 각 아이템의 `count` 값(예: "1.2k 신호", "850 신호" 등)은 고정하지 말고, 매번 400부터 3,000 사이의 임의의 트래픽/반응 수치를 자연스럽고 다채롭게(예: '1.5k 신호', '920 신호', '2.1k 신호' 등) 생성해주세요.
+2. 반드시 아래의 JSON 구조를 정확히 지켜주세요. 마크다운 백틱(```json 등) 없이 순수 JSON 문자열만 반환해야 합니다.
 
 {
   "dev": {
@@ -87,7 +89,6 @@ success = False
 for attempt in range(max_retries):
     try:
         print(f"Attempt {attempt + 1}: Calling Gemini API (gemini-3.5-flash)...")
-        # 3.6 모델 대신 3.5-flash 모델 사용
         response = client.models.generate_content(
             model="gemini-3.5-flash",
             contents=prompt_template,
@@ -108,7 +109,7 @@ for attempt in range(max_retries):
         with open("trends.json", "w", encoding="utf-8") as f:
             json.dump(parsed_data, f, ensure_ascii=False, indent=2)
 
-        print("Successfully updated trends.json using Gemini 3.5 Flash!")
+        print("Successfully updated trends.json with dynamic count metrics!")
         success = True
         break
 
