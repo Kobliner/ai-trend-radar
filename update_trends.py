@@ -2,7 +2,6 @@ import json
 import os
 import time
 from google import genai
-from google.genai.errors import APIError
 
 api_key = os.environ.get("GEMINI_API_KEY")
 if not api_key:
@@ -88,8 +87,9 @@ success = False
 for attempt in range(max_retries):
     try:
         print(f"Attempt {attempt + 1}: Calling Gemini API...")
+        # 가장 안정적이고 쾌적한 gemini-2.5-flash 모델 사용
         response = client.models.generate_content(
-            model="gemini-3.6-flash",
+            model="gemini-2.5-flash",
             contents=prompt_template,
         )
         
@@ -115,8 +115,8 @@ for attempt in range(max_retries):
     except Exception as e:
         print(f"Attempt {attempt + 1} failed: {type(e).__name__} - {e}")
         if attempt < max_retries - 1:
-            print("Waiting 5 seconds before retrying...")
-            time.sleep(5)
+            print("Waiting 10 seconds before retrying...")
+            time.sleep(10)
         else:
             print("All retry attempts failed.")
             exit(1)
