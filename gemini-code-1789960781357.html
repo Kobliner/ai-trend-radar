@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Trend Radar - Public Signal & Ranking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans">
+
+    <!-- Header -->
+    <header class="border-b border-slate-800 bg-slate-900/50 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="text-2xl">⚡</span>
+                <h1 class="text-xl font-bold tracking-tight text-white">AI Trend Radar</h1>
+            </div>
+            <div class="flex items-center space-x-3">
+                <span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1 rounded-full font-medium">
+                    🔒 Privacy-Safe (Public Signal)
+                </span>
+                <span class="text-xs text-slate-400 bg-slate-900 border border-slate-800 px-3 py-1 rounded-full">
+                    실시간 트렌드 집계중
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-6xl mx-auto px-6 py-8">
+        
+        <!-- Hero Section -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-white mb-2">실시간 AI 인기 질문 및 트렌드 순위</h2>
+            <p class="text-sm text-slate-400">
+                개인 대화 내용을 수집하지 않고, 공개된 기술 커뮤니티와 검색 트렌드 지표를 분석하여 요즘 가장 핫한 AI 활용 키워드를 제공합니다. 항목을 클릭하면 추천 프롬프트를 확인할 수 있습니다.
+            </p>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Left 2 Columns: Categories & Ranking List -->
+            <div class="lg:col-span-2 space-y-6">
+                
+                <!-- Category Tabs -->
+                <div class="flex space-x-2 border-b border-slate-800 pb-4">
+                    <button onclick="switchTab('dev')" id="btn-dev" class="px-4 py-2 text-sm font-semibold rounded-lg bg-blue-600 text-white transition">개발 & 코드</button>
+                    <button onclick="switchTab('business')" id="btn-business" class="px-4 py-2 text-sm font-semibold rounded-lg text-slate-400 hover:text-white hover:bg-slate-900 transition">비즈니스 & 문서</button>
+                    <button onclick="switchTab('creative')" id="btn-creative" class="px-4 py-2 text-sm font-semibold rounded-lg text-slate-400 hover:text-white hover:bg-slate-900 transition">콘텐츠 기획</button>
+                </div>
+
+                <!-- Ranking Content Area -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                    <h3 id="category-title" class="text-base font-semibold text-white mb-4">🔥 개발 & 코드 분야 실시간 인기 질문 순위</h3>
+                    <div id="ranking-list" class="space-y-3">
+                        <!-- Items will be injected by JavaScript -->
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Column: Prompt Detail Panel -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-sm font-semibold text-blue-400 uppercase tracking-wider">💡 추천 프롬프트 가이드</h3>
+                        <span id="detail-rank" class="text-xs bg-slate-800 text-slate-300 px-2 py-0.5 rounded">항목을 선택하세요</span>
+                    </div>
+                    <h4 id="detail-title" class="text-lg font-bold text-white mb-3">질문을 선택해주세요</h4>
+                    <p id="detail-desc" class="text-sm text-slate-400 mb-6 leading-relaxed">
+                        왼쪽 목록에서 트렌드 순위 항목을 클릭하시면, 해당 주제로 AI에게 효과적으로 질문할 수 있는 추천 프롬프트 템플릿이 여기에 나타납니다.
+                    </p>
+                    <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 font-mono text-xs text-slate-300 relative group min-h-[120px] flex items-center justify-center text-center text-slate-500" id="detail-prompt">
+                        선택된 내용이 없습니다.
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <button id="copy-btn" onclick="copyPrompt()" disabled class="w-full bg-slate-800 text-slate-500 font-medium py-2.5 rounded-xl transition cursor-not-allowed">
+                        프롬프트 복사하기
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        const data = {
+            dev: {
+                title: "🔥 개발 & 코드 분야 실시간 인기 질문 순위",
+                items: [
+                    { rank: 1, title: "React 컴포넌트 리렌더링 최적화", count: "조회 급상승", prompt: "다음 React 코드에서 불필요한 리렌더링이 발생하는 원인을 찾고, useCallback이나 useMemo를 활용해 최적화된 코드를 작성해줘.\n\n[코드 입력]" },
+                    { rank: 2, title: "Python FastAPI 비동기 처리 구조", count: "안정적", prompt: "FastAPI에서 외부 API를 병렬로 호출하기 위한 async/def 패턴과 httpx 비동기 클라이언트 사용법을 예시와 함께 설명해줘." },
+                    { rank: 3, title: "SQL 쿼리 성능 튜닝 및 인덱스 설계", count: "관심 집중", prompt: "다음 대용량 테이블 조인 쿼리의 실행 계획(Execution Plan) 속도를 개선하기 위한 복합 인덱스 설계 방안을 제안해줘.\n\n[쿼리 입력]" }
+                ]
+            },
+            business: {
+                title: "📈 비즈니스 & 문서 분야 실시간 인기 질문 순위",
+                items: [
+                    { rank: 1, title: "신사업 기획서 초안 프레임워크 구조", count: "조회 급상승", prompt: "국내 B2B SaaS 시장을 타겟으로 하는 새로운 AI 유틸리티 서비스의 '문제 정의 - 솔루션 - 시장성 - 수익 모델'이 포함된 기획서 목차와 핵심 내용을 짜줘." },
+                    { rank: 2, title: "분기별 실적 보고서 요약 및 인사이트 도출", count: "안정적", prompt: "다음 분기별 매출 데이터와 주요 지표를 바탕으로 경영진 보고용 핵심 요약 3가지와 리스크 요인을 분석해줘.\n\n[데이터 입력]" },
+                    { rank: 3, title: "영문 비즈니스 이메일 정중한 톤 교정", count: "꾸준한 인기", prompt: "다음 파트너사 발송용 영문 이메일 초안을 원어민 비즈니스 톤에 맞게 더 정중하고 명확하게 수정해줘.\n\n[초안 입력]" }
+                ]
+            },
+            creative: {
+                title: "🎨 콘텐츠 기획 분야 실시간 인기 질문 순위",
+                items: [
+                    { rank: 1, title: "유튜브 숏폼 대본 3초 후크 구성법", count: "조회 급상승", prompt: "주제: '직장인을 위한 실무 AI 활용법'\n유튜브 쇼츠와릴스 초반 3초 안에 시청자의 이탈을 막을 수 있는 강력한 후크 문구 3가지를 제안해줘." },
+                    { rank: 2, title: "블로그 SEO 최적화 아웃라인 작성", count: "안정적", prompt: "키워드 'AI 트렌드 랭킹'을 중심으로 구글 검색 상위 노출을 위한 H2, H3 태그 구조의 블로그 포스팅 아웃라인을 짜줘." },
+                    { rank: 3, title: "인스타그램 카드뉴스 스토리보드 기획", count: "관심 집중", prompt: "인스타그램 카드뉴스 5장 분량으로 제작할 '개발자들의 필수 AI 툴 정리' 콘텐츠의 각 장별 이미지 문구와 핵심 내용을 구성해줘." }
+                ]
+            }
+        };
+
+        let currentCategory = 'dev';
+        let activePromptText = "";
+
+        function switchTab(category) {
+            currentCategory = category;
+            
+            // Update button styles
+            ['dev', 'business', 'creative'].forEach(cat => {
+                const btn = document.getElementById(`btn-${cat}`);
+                if (cat === category) {
+                    btn.className = "px-4 py-2 text-sm font-semibold rounded-lg bg-blue-600 text-white transition";
+                } else {
+                    btn.className = "px-4 py-2 text-sm font-semibold rounded-lg text-slate-400 hover:text-white hover:bg-slate-900 transition";
+                }
+            });
+
+            renderList();
+        }
+
+        function renderList() {
+            const catData = data[currentCategory];
+            document.getElementById('category-title').innerText = catData.title;
+            
+            const listContainer = document.getElementById('ranking-list');
+            listContainer.innerHTML = '';
+
+            catData.items.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = "flex items-center justify-between p-4 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-slate-700 cursor-pointer transition";
+                div.onclick = () => selectItem(item);
+                div.innerHTML = `
+                    <div class="flex items-center space-x-4">
+                        <span class="text-sm font-bold text-blue-400 w-4">${item.rank}</span>
+                        <span class="text-sm font-medium text-slate-200">${item.title}</span>
+                    </div>
+                    <span class="text-xs text-slate-400 bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-full">${item.count}</span>
+                `;
+                listContainer.appendChild(div);
+            });
+        }
+
+        function selectItem(item) {
+            document.getElementById('detail-rank').innerText = `${item.rank}위 트렌드`;
+            document.getElementById('detail-title').innerText = item.title;
+            document.getElementById('detail-desc').innerText = `공개 트렌드 지표를 바탕으로 집계된 "${item.title}" 관련 핵심 질문 템플릿입니다. 바로 복사해서 활용해 보세요.`;
+            
+            const promptBox = document.getElementById('detail-prompt');
+            promptBox.className = "bg-slate-950 border border-slate-800 rounded-xl p-4 font-mono text-xs text-slate-200 relative group text-left whitespace-pre-wrap leading-relaxed";
+            promptBox.innerText = item.prompt;
+
+            activePromptText = item.prompt;
+
+            const copyBtn = document.getElementById('copy-btn');
+            copyBtn.disabled = false;
+            copyBtn.className = "w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-2.5 rounded-xl transition cursor-pointer";
+            copyBtn.innerText = "프롬프트 복사하기";
+        }
+
+        function copyPrompt() {
+            if (!activePromptText) return;
+            navigator.clipboard.writeText(activePromptText).then(() => {
+                const copyBtn = document.getElementById('copy-btn');
+                copyBtn.innerText = "복사 완료! ✔";
+                copyBtn.className = "w-full bg-emerald-600 text-white font-medium py-2.5 rounded-xl transition";
+                setTimeout(() => {
+                    copyBtn.innerText = "프롬프트 복사하기";
+                    copyBtn.className = "w-full bg-blue-600 hover:bg-blue-500 text-white font-medium py-2.5 rounded-xl transition cursor-pointer";
+                }, 2000);
+            });
+        }
+
+        // Initialize first render
+        renderList();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta name="google-site-verification" content="googlebfafd830bdb4e81d" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실시간 AI 트렌드 & 프롬프트 레이더</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --accent: #38bdf8;
+            --accent-hover: #0ea5e9;
+            --border: #334155;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        header p {
+            color: var(--text-sub);
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+        }
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        .tab-btn {
+            background-color: var(--card-bg);
+            color: var(--text-sub);
+            border: 1px solid var(--border);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background-color: var(--accent);
+            color: #0f172a;
+            border-color: var(--accent);
+        }
+        .section-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+        .card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .rank-badge {
+            background-color: #334155;
+            color: var(--accent);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        .status-badge {
+            font-size: 0.85rem;
+            color: #f43f5e;
+            background: rgba(244, 63, 94, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        .card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.1rem;
+        }
+        .prompt-box {
+            background-color: #0f172a;
+            border: 1px dashed var(--border);
+            padding: 12px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            margin-bottom: 15px;
+            white-space: pre-wrap;
+        }
+        .copy-btn {
+            background-color: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: background 0.2s;
+        }
+        .copy-btn:hover {
+            background-color: rgba(56, 189, 248, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>⚡ Real-time AI Trend Radar</h1>
+        <p>공개된 퍼블릭 신호를 기반으로 실무에서 가장 주목받는 AI 질문과 프롬프트를 확인하세요.</p>
+    </header>
+
+    <div class="container">
+        <!-- 탭 버튼 영역 -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('dev')">개발 & 코드</button>
+            <button class="tab-btn card-btn" onclick="switchTab('business')">비즈니스 & 문서</button>
+            <button class="tab-btn" onclick="switchTab('creative')">콘텐츠 기획</button>
+        </div>
+
+        <!-- 컨텐츠 표시 영역 -->
+        <div id="content-area">
+            <p style="text-align: center; color: var(--text-sub);">데이터를 불러오는 중...</p>
+        </div>
+    </div>
+
+    <script>
+        let trendData = {};
+        let currentTab = 'dev';
+
+        // trends.json 데이터 불러오기
+        async function loadTrends() {
+            try {
+                const response = await fetch('trends.json');
+                if (!response.ok) throw new Error('데이터를 불러오지 못했습니다.');
+                trendData = await response.json();
+                renderTab(currentTab);
+            } catch (error) {
+                document.getElementById('content-area').innerHTML = 
+                    `<p style="text-align: center; color: #f43f5e;">데이터 로드 실패: ${error.message}<br>로컬 서버 환경에서 실행 중인지 확인해주세요!</p>`;
+            }
+        }
+
+        // 탭 전환 함수
+        function switchTab(tabKey) {
+            currentTab = tabKey;
+            
+            // 버튼 활성화 스타일 변경
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            renderTab(tabKey);
+        }
+
+        // 화면에 카드 리스트 그려주기
+        function renderTab(tabKey) {
+            const area = document.getElementById('content-area');
+            const data = trendData[tabKey];
+
+            if (!data) {
+                area.innerHTML = '<p>데이터가 없습니다.</p>';
+                return;
+            }
+
+            let html = `<div class="section-title">${data.title}</div><div class="card-list">`;
+
+            data.items.forEach(item => {
+                html += `
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="rank-badge">TOP ${item.rank}</span>
+                            <span class="status-badge">🔥 ${item.count}</span>
+                        </div>
+                        <h3>${item.title}</h3>
+                        <div class="prompt-box">${item.prompt}</div>
+                        <button class="copy-btn" onclick="copyPrompt(this, \`${item.prompt}\`)">프롬프트 복사하기</button>
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            area.innerHTML = html;
+        }
+
+        // 클립보드 복사 기능
+        function copyPrompt(button, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.innerText;
+                button.innerText = '✨ 복사 완료!';
+                button.style.backgroundColor = 'var(--accent)';
+                button.style.color = '#0f172a';
+                setTimeout(() => {
+                    button.innerText = originalText;
+                    button.style.backgroundColor = 'transparent';
+                    button.style.color = 'var(--accent)';
+                }, 1500);
+            }).catch(err => {
+                alert('복사 실패: ' + err);
+            });
+        }
+
+        // 페이지 로드 시 데이터 가져오기 실행
+        loadTrends();
+    </script>
+</body>
+</html>
