@@ -37,5 +37,6 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout main || git checkout -b main
           git add trends.json history.json
           git diff --quiet && git diff --cached --quiet || (git commit -m "Auto-update trends and history data" && git push origin main --force)
