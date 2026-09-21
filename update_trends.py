@@ -1,6 +1,7 @@
 import json
 import os
 import time
+from datetime import datetime
 from google import genai
 
 api_key = os.environ.get("GEMINI_API_KEY")
@@ -106,10 +107,37 @@ for attempt in range(max_retries):
 
         parsed_data = json.loads(content)
 
+        # 1. trends.json 최신화 저장
         with open("trends.json", "w", encoding="utf-8") as f:
             json.dump(parsed_data, f, ensure_ascii=False, indent=2)
 
-        print("Successfully updated trends.json with dynamic count metrics!")
+        # 2. history.json 에 아카이브 기록 누적
+        history_file = "history.json"
+        history_data = []
+        if os.path.exists(history_file):
+            try:
+                with open(history_file, "r", encoding="utf-8") as hf:
+                    history_data = json.load(hf)
+            except:
+                history_data = []
+
+        # 현재 시각(KST 또는 UTC 기준 날짜/시간) 기록
+        current_time_str = datetime.utcnow().strftime("%Y-%m-%d %H:%M (UTC)")
+        
+        # 각 카테고리별 1위 타이틀이나 주요 키워드 추출해서 아카이브에 담기
+        snapshot = {
+            "timestamp": current_time_str,
+            "keywords": { cat: data["items"][0]["title"] for cat, data in parsed_data.items() if "items" in data and len(data["items"]) > 0 }
+        }
+
+        # 최신 기록을 맨 앞에 추가 (최대 50개까지만 보관하여 용량 관리)
+        history_data.insert(0, snapshot)
+        history_data = history_data[:50]
+
+        with open(history_file, "w", encoding="utf-8") as hf:
+            json.dump(history_data, hf, ensure_ascii=False, indent=2)
+
+        print("Successfully updated trends.json and archived to history.json!")
         success = True
         break
 
