@@ -83,9 +83,9 @@ prompt_template = """
 
 try:
     print("Calling Gemini API to generate trends...")
-    # 무료로 사용 가능한 Gemini Flash 모델 호출
+    # 최신 무료 지원 모델 명칭으로 수정
     response = client.models.generate_content(
-        model="gemini-2.5-flash",
+        model="gemini-3.6-flash",
         contents=prompt_template,
     )
     
