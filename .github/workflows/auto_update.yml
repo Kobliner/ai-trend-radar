@@ -1,8 +1,12 @@
 name: Auto Update AI Trends
 
+concurrency:
+  group: auto-update-trends
+  cancel-in-progress: false
+
 on:
   schedule:
-    - cron: '0 0,4,10 * * *'  # 한국 시간 기준 오전 9시, 오후 1시, 저녁 7시
+    - cron: '0 0,4,10 * * *'
   workflow_dispatch:
 
 jobs:
