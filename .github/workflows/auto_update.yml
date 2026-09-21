@@ -33,11 +33,9 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python update_trends.py
 
-     - name: Commit and push if changed
+      - name: Commit and push if changed
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git fetch origin main
-          git reset --mixed origin/main
           git add trends.json history.json
-          git diff --quiet && git diff --cached --quiet || (git commit -m "Auto-update trends.json and history.json" && git push origin main)
+          git diff --quiet && git diff --cached --quiet || (git commit -m "Auto-update trends and history data" && git push origin main --force)
