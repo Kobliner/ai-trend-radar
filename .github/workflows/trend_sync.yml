@@ -19,8 +19,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -34,11 +32,6 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python update_trends.py
-
-      - name: Clean git state
-        run: |
-          git checkout -- .
-          git clean -fd
 
       - name: Commit and push changes
         run: |
