@@ -1,13 +1,14 @@
 import json
 import os
+import time
 from google import genai
+from google.genai.errors import APIError
 
 api_key = os.environ.get("GEMINI_API_KEY")
 if not api_key:
     print("Error: GEMINI_API_KEY environment variable is missing!")
     exit(1)
 
-# 구글 Gemini 클라이언트 초기화
 client = genai.Client(api_key=api_key)
 
 prompt_template = """
@@ -81,31 +82,41 @@ prompt_template = """
 }
 """
 
-try:
-    print("Calling Gemini API to generate trends...")
-    # 최신 무료 지원 모델 명칭으로 수정
-    response = client.models.generate_content(
-        model="gemini-3.6-flash",
-        contents=prompt_template,
-    )
-    
-    content = response.text.strip()
-    
-    if content.startswith("```json"):
-        content = content[7:]
-    if content.startswith("```"):
-        content = content[3:]
-    if content.endswith("```"):
-        content = content[:-3]
-    content = content.strip()
+max_retries = 3
+success = False
 
-    parsed_data = json.loads(content)
+for attempt in range(max_retries):
+    try:
+        print(f"Attempt {attempt + 1}: Calling Gemini API...")
+        response = client.models.generate_content(
+            model="gemini-3.6-flash",
+            contents=prompt_template,
+        )
+        
+        content = response.text.strip()
+        
+        if content.startswith("```json"):
+            content = content[7:]
+        if content.startswith("```"):
+            content = content[3:]
+        if content.endswith("```"):
+            content = content[:-3]
+        content = content.strip()
 
-    with open("trends.json", "w", encoding="utf-8") as f:
-        json.dump(parsed_data, f, ensure_ascii=False, indent=2)
+        parsed_data = json.loads(content)
 
-    print("Successfully updated trends.json using Gemini!")
+        with open("trends.json", "w", encoding="utf-8") as f:
+            json.dump(parsed_data, f, ensure_ascii=False, indent=2)
 
-except Exception as e:
-    print(f"Error generating trends: {type(e).__name__} - {e}")
-    exit(1)
+        print("Successfully updated trends.json using Gemini!")
+        success = True
+        break
+
+    except Exception as e:
+        print(f"Attempt {attempt + 1} failed: {type(e).__name__} - {e}")
+        if attempt < max_retries - 1:
+            print("Waiting 5 seconds before retrying...")
+            time.sleep(5)
+        else:
+            print("All retry attempts failed.")
+            exit(1)
