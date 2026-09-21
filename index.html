@@ -146,9 +146,12 @@
     <div class="container">
         <!-- 탭 버튼 영역 -->
         <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('dev')">개발 & 코드</button>
-            <button class="tab-btn card-btn" onclick="switchTab('business')">비즈니스 & 문서</button>
-            <button class="tab-btn" onclick="switchTab('creative')">콘텐츠 기획</button>
+            <button class="tab-btn active" onclick="switchTab('dev', this)">개발&코드</button>
+            <button class="tab-btn" onclick="switchTab('business', this)">비즈니스</button>
+            <button class="tab-btn" onclick="switchTab('creative', this)">콘텐츠</button>
+            <button class="tab-btn" onclick="switchTab('sports', this)">스포츠</button>
+            <button class="tab-btn" onclick="switchTab('game', this)">게임</button>
+            <button class="tab-btn" onclick="switchTab('daily', this)">일상</button>
         </div>
 
         <!-- 컨텐츠 표시 영역 -->
@@ -175,14 +178,16 @@
         }
 
         // 탭 전환 함수
-        function switchTab(tabKey) {
+        function switchTab(tabKey, btnElement) {
             currentTab = tabKey;
             
             // 버튼 활성화 스타일 변경
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            event.target.classList.add('active');
+            if (btnElement) {
+                btnElement.classList.add('active');
+            }
 
             renderTab(tabKey);
         }
