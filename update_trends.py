@@ -84,15 +84,15 @@ prompt_template = """
 }
 """
 
-max_retries = 3
+max_retries = 5  # 재시도 횟수 증가
 success = False
 
 for attempt in range(max_retries):
     try:
         print(f"Attempt {attempt + 1}: Calling Gemini API...")
-        # 안정적인 gemini-3.5-flash 모델 지정
+        # 가장 호환성이 높은 안정적인 모델명 사용
         response = client.models.generate_content(
-            model="gemini-3.5-flash",
+            model="gemini-1.5-flash",
             contents=prompt_template,
         )
         
@@ -145,7 +145,7 @@ for attempt in range(max_retries):
     except Exception as e:
         print(f"Attempt {attempt + 1} failed: {type(e).__name__} - {e}")
         if attempt < max_retries - 1:
-            wait_time = (attempt + 1) * 10
+            wait_time = (attempt + 1) * 15  # 대기 시간을 조금 더 길게 설정 (15초, 30초, 45초...)
             print(f"Waiting {wait_time} seconds before retrying...")
             time.sleep(wait_time)
         else:
