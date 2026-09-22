@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>실시간 AI 트렌드 & 프롬프트 레이더</title>
+    <!-- Tailwind CSS CDN (태그 스타일 및 레이아웃 용도) -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
             --bg-color: #0f172a;
@@ -48,6 +50,7 @@
             gap: 10px;
             margin-bottom: 20px;
             justify-content: center;
+            flex-wrap: wrap;
         }
         .tab-btn {
             background-color: var(--card-bg);
@@ -138,10 +141,10 @@
 </head>
 <body>
 
- <header>
-    <h1 id="site-title">⚡ Real-time AI Trend Radar</h1>
-    <p id="site-subtitle">공개된 퍼블릭 신호를 기반으로 실무에서 가장 주목받는 AI 질문과 프롬프트를 확인하세요.</p>
-</header>
+    <header>
+        <h1 id="site-title">⚡ Real-time AI Trend Radar</h1>
+        <p id="site-subtitle">공개된 퍼블릭 트렌드를 기반으로 실무에서 가장 주목받는 AI 질문과 프롬프트를 확인하세요.</p>
+    </header>
 
     <div class="container">
         <!-- 탭 버튼 영역 -->
@@ -161,22 +164,19 @@
     </div>
 
     <!-- 지난 트렌드 히스토리 아카이브 섹션 -->
-<section class="max-w-6xl mx-auto px-4 py-12 mt-12 border-t border-gray-800">
-    <div class="flex items-center justify-between mb-8">
-        <div>
+    <section class="max-w-4xl w-full mx-auto px-4 py-12 mt-12 border-t border-gray-800">
+        <div class="mb-8">
             <h2 class="text-2xl font-bold text-white">
                 트렌드 아카이브 히스토리
             </h2>
             <p class="text-gray-400 text-sm mt-1">시간대별로 기록된 역대 AI 트렌드 키워드 모음입니다.</p>
         </div>
-    </div>
-</section>
 
-    <!-- 아카이브 카드가 동적으로 들어갈 자리 -->
-    <div id="history-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- 자바스크립트로 데이터가 렌더링됩니다 -->
-    </div>
-</section>
+        <!-- 아카이브 카드가 동적으로 들어갈 자리 -->
+        <div id="history-container" class="flex flex-col gap-6">
+            <!-- 자바스크립트로 데이터가 렌더링됩니다 -->
+        </div>
+    </section>
 
     <script>
         let trendData = {};
@@ -257,107 +257,109 @@
             });
         }
 
-        // 페이지 로드 시 데이터 가져오기 실행
+        // 페이지 로드 시 메인 데이터 가져오기 실행
         loadTrends();
     </script>
-    <!-- 기존 HTML 내용들... -->
 
-<script>
-  // 1. 다국어 딕셔너리 데이터 정의
-  const translations = {
-    ko: {
-      title: "⚡ Real-time AI Trend Radar",
-      subtitle: "공개된 퍼블릭 신호를 기반으로 실무에서 가장 주목받는 AI 질문과 프롬프트를 확인하세요."
-    },
-    en: {
-      title: "⚡ Real-time AI Trend Radar",
-      subtitle: "Discover the most trending AI questions and prompts based on public signals."
-    }
-  };
+    <script>
+        // 다국어 딕셔너리 데이터 정의
+        const translations = {
+            ko: {
+                title: "⚡ Real-time AI Trend Radar",
+                subtitle: "공개된 퍼블릭 트렌드를 기반으로 실무에서 가장 주목받는 AI 질문과 프롬프트를 확인하세요."
+            },
+            en: {
+                title: "⚡ Real-time AI Trend Radar",
+                subtitle: "Discover the most trending AI questions and prompts based on public trends."
+            }
+        };
 
-  // 2. 언어 자동 적용 함수
-  function initLanguage() {
-    // 브라우저 기본 언어 감지 (한국어가 아니면 영어 기본 적용)
-    const userLang = navigator.language.startsWith("ko") ? "ko" : "en";
-    const t = translations[userLang] || translations.ko;
-    
-    document.getElementById("site-title").innerText = t.title;
-    document.getElementById("site-subtitle").innerText = t.subtitle;
-  }
-
-  // 페이지 로드 시 실행
-  window.addEventListener("DOMContentLoaded", initLanguage);
-</script>
-
-<script>
-    // 1. 기존에 trends.json을 불러와서 화면에 그려주던 코드들...
-    async function loadTrends() {
-        // ... (생략)
-    }
-    loadTrends();
-
-
-    // === 2. 이 아래에 방금 드린 아카이브 함수 코드를 그대로 붙여넣어 주세요! ===
-
-    async function loadTrendHistory() {
-        try {
-            const response = await fetch('history.json');
-            if (!response.ok) return;
+        // 언어 자동 적용 함수
+        function initLanguage() {
+            const userLang = navigator.language.startsWith("ko") ? "ko" : "en";
+            const t = translations[userLang] || translations.ko;
             
-            const historyData = await response.json();
-            const container = document.getElementById('history-container');
-            if (!container) return;
-
-            container.innerHTML = '';
-
-            const categoryNames = {
-                "dev": "개발 & 코드",
-                "business": "비즈니스",
-                "creative": "콘텐츠 기획",
-                "sports": "스포츠",
-                "game": "게임",
-                "daily": "일상"
-            };
-
-            historyData.forEach(entry => {
-                const card = document.createElement('div');
-                card.className = "bg-gray-900 border border-gray-800 rounded-xl p-5 hover:border-indigo-500/50 transition-all";
-
-                let htmlContent = `
-                    <div class="flex items-center justify-between mb-3 pb-2 border-b border-gray-800">
-                        <span class="text-xs font-semibold text-indigo-400 bg-indigo-950/60 px-2.5 py-1 rounded-md">
-                            ${entry.timestamp}
-                        </span>
-                    </div>
-                    <div class="space-y-2">
-                `;
-
-                if (entry.keywords) {
-                    for (const [catKey, titleText] of Object.entries(entry.keywords)) {
-                        const catDisplayName = categoryNames[catKey] || catKey;
-                        htmlContent += `
-                            <div class="text-sm flex items-start gap-2">
-                                <span class="text-gray-500 font-medium min-w-[75px]">• ${catDisplayName}:</span>
-                                <span class="text-gray-300 truncate">${titleText}</span>
-                            </div>
-                        `;
-                    }
-                }
-
-                htmlContent += `</div>`;
-                card.innerHTML = htmlContent;
-                container.appendChild(card);
-            });
-
-        } catch (error) {
-            console.error("Failed to load trend history:", error);
+            document.getElementById("site-title").innerText = t.title;
+            document.getElementById("site-subtitle").innerText = t.subtitle;
         }
-    }
 
-    // 페이지가 로드될 때 아카이브도 같이 불러오도록 실행
-    document.addEventListener('DOMContentLoaded', () => {
-        loadTrendHistory();
-    });
-</script>
+        window.addEventListener("DOMContentLoaded", initLanguage);
+    </script>
+
+    <script>
+        // 아카이브 히스토리를 카테고리별 태그(배지) 형태로 렌더링
+        async function loadTrendHistory() {
+            try {
+                const response = await fetch('history.json');
+                if (!response.ok) return;
+                
+                const historyData = await response.json();
+                const container = document.getElementById('history-container');
+                if (!container) return;
+
+                container.innerHTML = '';
+
+                const categoryNames = {
+                    "dev": "개발 & 코드",
+                    "business": "비즈니스",
+                    "creative": "콘텐츠 기획",
+                    "sports": "스포츠",
+                    "game": "게임",
+                    "daily": "일상"
+                };
+
+                historyData.forEach(entry => {
+                    const card = document.createElement('div');
+                    card.className = "bg-gray-900 border border-gray-800 rounded-xl p-5 hover:border-indigo-500/50 transition-all";
+
+                    let htmlContent = `
+                        <div class="flex items-center justify-between mb-4 pb-2 border-b border-gray-800">
+                            <span class="text-xs font-semibold text-indigo-400 bg-indigo-950/60 px-2.5 py-1 rounded-md">
+                                🕒 ${entry.timestamp}
+                            </span>
+                        </div>
+                        <div class="space-y-4">
+                    `;
+
+                    if (entry.keywords) {
+                        for (const [catKey, titles] of Object.entries(entry.keywords)) {
+                            const catDisplayName = categoryNames[catKey] || catKey;
+                            
+                            if (Array.isArray(titles) && titles.length > 0) {
+                                htmlContent += `
+                                    <div>
+                                        <div class="text-xs font-bold text-gray-400 mb-1.5">${catDisplayName}</div>
+                                        <div class="flex flex-wrap gap-1.5">
+                                `;
+                                titles.forEach(title => {
+                                    htmlContent += `
+                                        <span class="px-2.5 py-1 text-xs font-medium bg-gray-800 text-sky-300 rounded-full border border-gray-700 hover:border-sky-500 transition-all cursor-default shadow-sm">
+                                            #${title}
+                                        </span>
+                                    `;
+                                });
+                                htmlContent += `
+                                        </div>
+                                    </div>
+                                `;
+                            }
+                        }
+                    }
+
+                    htmlContent += `</div>`;
+                    card.innerHTML = htmlContent;
+                    container.appendChild(card);
+                });
+
+            } catch (error) {
+                console.error("Failed to load trend history:", error);
+            }
+        }
+
+        // 페이지가 로드될 때 아카이브 불러오기 실행
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTrendHistory();
+        });
+    </script>
 </body>
 </html>
