@@ -9,7 +9,6 @@ def post_trend():
     ACCESS_TOKEN = os.environ.get("TWITTER_ACCESS_TOKEN")
     ACCESS_SECRET = os.environ.get("TWITTER_ACCESS_SECRET")
 
-    # 키 확인용 로그 (보안을 위해 앞글자나 존재 여부만 확인)
     if not all([API_KEY, API_SECRET, ACCESS_TOKEN, ACCESS_SECRET]):
         print("에러: 깃허브 시크릿 키가 설정되지 않았습니다!")
         return
