@@ -17,68 +17,68 @@ prompt_template = """
 현재 시점에서 가장 주목받는 최신 AI 활용 주제와 실무에서 바로 쓸 수 있는 프롬프트 5개씩을 JSON 포맷으로 생성해주세요.
 
 **중요 규칙:**
-1. 각 아이템의 `count` 값(예: "1.2k 신호", "850 신호" 등)은 고정하지 말고, 매번 400부터 3,000 사이의 임의의 트래픽/반응 수치를 자연스럽고 다채롭게(예: '1.5k 신호', '920 신호', '2.1k 신호' 등) 생성해주세요.
+1. 각 아이템의 `count` 값(예: "1.2k 트렌드", "850 트렌드" 등)은 고정하지 말고, 매번 400부터 3,000 사이의 임의의 트래픽/반응 수치를 자연스럽고 다채롭게(예: '1.5k 트렌드', '920 트렌드', '2.1k 트렌드' 등) 생성해주세요.
 2. 반드시 아래의 JSON 구조를 정확히 지켜주세요. 마크다운 백틱(```json 등) 없이 순수 JSON 문자열만 반환해야 합니다.
 
 {
   "dev": {
     "title": "개발 & 코드 트렌드",
     "items": [
-      { "rank": 1, "count": "1.2k 신호", "title": "주제 제목", "prompt": "프롬프트 내용" },
-      { "rank": 2, "count": "950 신호", "title": "주제 제목", "prompt": "프롬프트 내용" },
-      { "rank": 3, "count": "820 신호", "title": "주제 제목", "prompt": "프롬프트 내용" },
-      { "rank": 4, "count": "670 신호", "title": "주제 제목", "prompt": "프롬프트 내용" },
-      { "rank": 5, "count": "540 신호", "title": "주제 제목", "prompt": "프롬프트 내용" }
+      { "rank": 1, "count": "1.2k 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" },
+      { "rank": 2, "count": "950 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" },
+      { "rank": 3, "count": "820 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" },
+      { "rank": 4, "count": "670 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" },
+      { "rank": 5, "count": "540 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" }
     ]
   },
   "business": {
     "title": "비즈니스 & 문서 트렌드",
     "items": [
-      { "rank": 1, "count": "980 신호", "title": "주제 제목", "prompt": "프롬프트 내용" },
-      { "rank": 2, "count": "840 신호", "title": "주제 제목", "prompt": "프롬프트 내용" },
-      { "rank": 3, "count": "710 신호", "title": "주제 제목", "prompt": "프롬프트 내용" },
-      { "rank": 4, "count": "620 신호", "title": "주제 제목", "prompt": "프롬프트 내용" },
-      { "rank": 5, "count": "510 신호", "title": "주제 제목", "prompt": "프롬프트 내용" }
+      { "rank": 1, "count": "980 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" },
+      { "rank": 2, "count": "840 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" },
+      { "rank": 3, "count": "710 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" },
+      { "rank": 4, "count": "620 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" },
+      { "rank": 5, "count": "510 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" }
     ]
   },
   "creative": {
     "title": "콘텐츠 기획 트렌드",
     "items": [
-      { "rank": 1, "count": "1.5k 신호", "title": "주제 제목", "prompt": "프롬프트 내용" },
-      { "rank": 2, "count": "1.1k 신호", "title": "주제 제목", "prompt": "프롬프트 내용" },
-      { "rank": 3, "count": "890 신호", "title": "주제 제목", "prompt": "프롬프트 내용" },
-      { "rank": 4, "count": "760 신호", "title": "주제 제목", "prompt": "프롬프트 내용" },
-      { "rank": 5, "count": "640 신호", "title": "주제 제목", "prompt": "프롬프트 내용" }
+      { "rank": 1, "count": "1.5k 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" },
+      { "rank": 2, "count": "1.1k 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" },
+      { "rank": 3, "count": "890 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" },
+      { "rank": 4, "count": "760 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" },
+      { "rank": 5, "count": "640 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" }
     ]
   },
   "sports": {
     "title": "스포츠 트렌드",
     "items": [
-      { "rank": 1, "count": "850 신호", "title": "주제 제목", "prompt": "프롬프트 내용" },
-      { "rank": 2, "count": "720 신호", "title": "주제 제목", "prompt": "프롬프트 내용" },
-      { "rank": 3, "count": "610 신호", "title": "주제 제목", "prompt": "프롬프트 내용" },
-      { "rank": 4, "count": "530 신호", "title": "주제 제목", "prompt": "프롬프트 내용" },
-      { "rank": 5, "count": "420 신호", "title": "주제 제목", "prompt": "프롬프트 내용" }
+      { "rank": 1, "count": "850 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" },
+      { "rank": 2, "count": "720 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" },
+      { "rank": 3, "count": "610 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" },
+      { "rank": 4, "count": "530 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" },
+      { "rank": 5, "count": "420 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" }
     ]
   },
   "game": {
     "title": "게임 트렌드",
     "items": [
-      { "rank": 1, "count": "1.1k 신호", "title": "주제 제목", "prompt": "프롬프트 내용" },
-      { "rank": 2, "count": "940 신호", "title": "주제 제목", "prompt": "프롬프트 내용" },
-      { "rank": 3, "count": "810 신호", "title": "주제 제목", "prompt": "프롬프트 내용" },
-      { "rank": 4, "count": "690 신호", "title": "주제 제목", "prompt": "프롬프트 내용" },
-      { "rank": 5, "count": "550 신호", "title": "주제 제목", "prompt": "프롬프트 내용" }
+      { "rank": 1, "count": "1.1k 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" },
+      { "rank": 2, "count": "940 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" },
+      { "rank": 3, "count": "810 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" },
+      { "rank": 4, "count": "690 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" },
+      { "rank": 5, "count": "550 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" }
     ]
   },
   "daily": {
     "title": "일상 트렌드",
     "items": [
-      { "rank": 1, "count": "2.3k 신호", "title": "주제 제목", "prompt": "프롬프트 내용" },
-      { "rank": 2, "count": "1.8k 신호", "title": "주제 제목", "prompt": "프롬프트 내용" },
-      { "rank": 3, "count": "1.4k 신호", "title": "주제 제목", "prompt": "프롬프트 내용" },
-      { "rank": 4, "count": "1.1k 신호", "title": "주제 제목", "prompt": "프롬프트 내용" },
-      { "rank": 5, "count": "920 신호", "title": "주제 제목", "prompt": "프롬프트 내용" }
+      { "rank": 1, "count": "2.3k 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" },
+      { "rank": 2, "count": "1.8k 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" },
+      { "rank": 3, "count": "1.4k 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" },
+      { "rank": 4, "count": "1.1k 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" },
+      { "rank": 5, "count": "920 트렌드", "title": "주제 제목", "prompt": "프롬프트 내용" }
     ]
   }
 }
@@ -91,7 +91,7 @@ for attempt in range(max_retries):
     try:
         print(f"Attempt {attempt + 1}: Calling Gemini API (gemini-1.5-flash)...")
         response = client.models.generate_content(
-            model="gemini-3.5-flash",
+            model="gemini-1.5-flash",
             contents=prompt_template,
         )
         
@@ -121,16 +121,19 @@ for attempt in range(max_retries):
             except:
                 history_data = []
 
-        # 현재 시각(KST 또는 UTC 기준 날짜/시간) 기록
+        # 현재 시각(UTC 기준 날짜/시간) 기록
         current_time_str = datetime.utcnow().strftime("%Y-%m-%d %H:%M (UTC)")
         
-        # 각 카테고리별 1위 타이틀이나 주요 키워드 추출해서 아카이브에 담기
+        # 각 카테고리별 모든 아이템의 타이틀을 리스트 형태로 추출
         snapshot = {
             "timestamp": current_time_str,
-            "keywords": { cat: data["items"][0]["title"] for cat, data in parsed_data.items() if "items" in data and len(data["items"]) > 0 }
+            "keywords": { 
+                cat: [item["title"] for item in data.get("items", [])] 
+                for cat, data in parsed_data.items() 
+            }
         }
 
-        # 최신 기록을 맨 앞에 추가 (최대 50개까지만 보관하여 용량 관리)
+        # 최신 기록을 맨 앞에 추가 (최대 50개까지만 보관)
         history_data.insert(0, snapshot)
         history_data = history_data[:50]
 
