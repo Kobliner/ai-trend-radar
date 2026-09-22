@@ -89,67 +89,7 @@ success = False
 
 for attempt in range(max_retries):
     try:
-        print(f"Attempt {attempt + 1}: Calling Gemini API (gemini-1.5-flash)...")
+        print(f"Attempt {attempt + 1}: Calling Gemini API...")
+        # 안정적인 gemini-1.5-flash 모델 사용
         response = client.models.generate_content(
-            model="gemini-1.5-flash",
-            contents=prompt_template,
-        )
-        
-        content = response.text.strip()
-        
-        if content.startswith("```json"):
-            content = content[7:]
-        if content.startswith("```"):
-            content = content[3:]
-        if content.endswith("```"):
-            content = content[:-3]
-        content = content.strip()
-
-        parsed_data = json.loads(content)
-
-        # 1. trends.json 최신화 저장
-        with open("trends.json", "w", encoding="utf-8") as f:
-            json.dump(parsed_data, f, ensure_ascii=False, indent=2)
-
-        # 2. history.json 에 아카이브 기록 누적
-        history_file = "history.json"
-        history_data = []
-        if os.path.exists(history_file):
-            try:
-                with open(history_file, "r", encoding="utf-8") as hf:
-                    history_data = json.load(hf)
-            except:
-                history_data = []
-
-        # 현재 시각(UTC 기준 날짜/시간) 기록
-        current_time_str = datetime.utcnow().strftime("%Y-%m-%d %H:%M (UTC)")
-        
-        # 각 카테고리별 모든 아이템의 타이틀을 리스트 형태로 추출
-        snapshot = {
-            "timestamp": current_time_str,
-            "keywords": { 
-                cat: [item["title"] for item in data.get("items", [])] 
-                for cat, data in parsed_data.items() 
-            }
-        }
-
-        # 최신 기록을 맨 앞에 추가 (최대 50개까지만 보관)
-        history_data.insert(0, snapshot)
-        history_data = history_data[:50]
-
-        with open(history_file, "w", encoding="utf-8") as hf:
-            json.dump(history_data, hf, ensure_ascii=False, indent=2)
-
-        print("Successfully updated trends.json and archived to history.json!")
-        success = True
-        break
-
-    except Exception as e:
-        print(f"Attempt {attempt + 1} failed: {type(e).__name__} - {e}")
-        if attempt < max_retries - 1:
-            wait_time = (attempt + 1) * 10
-            print(f"Waiting {wait_time} seconds before retrying...")
-            time.sleep(wait_time)
-        else:
-            print("All retry attempts failed.")
-            exit(1)
+            model="gemini-1.5-flash
