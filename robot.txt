@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ai-trend-radar-iota.vercel.app/sitemap.xml
