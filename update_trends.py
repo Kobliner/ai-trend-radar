@@ -90,8 +90,9 @@ success = False
 for attempt in range(max_retries):
     try:
         print(f"Attempt {attempt + 1}: Calling Gemini API...")
+        # 최신 안정 모델명 적용
         response = client.models.generate_content(
-            model="gemini-1.5-flash",
+            model="gemini-2.5-flash",
             contents=prompt_template,
         )
         
