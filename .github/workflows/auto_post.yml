@@ -2,11 +2,11 @@ name: Auto Post to X
 
 on:
   schedule:
-    - cron: '0 0 * * *' # 매일 UTC 0시 (한국 시간 오전 9시) 실행
-  workflow_dispatch: # 수동으로도 실행 가능
+    - cron: '0 0 * * *' # 매일 UTC 0시 (한국 시간 아침 9시)
+  workflow_dispatch: # 수동 실행 허용
 
 jobs:
-  post:
+  post-to-twitter:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -18,7 +18,8 @@ jobs:
           python-version: '3.10'
 
       - name: Install dependencies
-        run: pip install tweepy requests
+        run: |
+          pip install tweepy
 
       - name: Run posting script
         env:
