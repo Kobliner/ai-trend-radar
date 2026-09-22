@@ -1,4 +1,3 @@
-import json
 import os
 import tweepy  # 트위터 연동 라이브러리
 
@@ -9,23 +8,15 @@ ACCESS_TOKEN = os.environ.get("TWITTER_ACCESS_TOKEN")
 ACCESS_SECRET = os.environ.get("TWITTER_ACCESS_SECRET")
 
 def post_trend():
-    # trends.json 파일 읽기
-    try:
-        with open("trends.json", "r", encoding="utf-8") as f:
-            data = json.load(f)
-            # 딕셔너리 구조에서 첫 번째 카테고리('dev')의 첫 번째 아이템 가져오기[cite: 2]
-            first_category = list(data.keys())[0]
-            latest_trend = data[first_category]["items"][0]
-    except Exception as e:
-        print(f"데이터를 읽지 못했습니다: {e}")
-        return
+    # trends.json 파일을 읽는 대신 직접 최신 트렌드 탑 1위를 정의합니다.
+    latest_title = "LLM 기반 코드 리팩토링 및 성능 최적화"
+    latest_prompt = "다음 [언어] 코드를 분석하여 시간 복잡도와 공간 복잡도를 최적화해줘."
 
-    # 트윗 내용 구성 (프롬프트 내용 일부 포함)
-    prompt_snippet = latest_trend.get('prompt', '')[:80] + "..."
+    # 트윗 내용 구성
     tweet_text = f"""🔥 오늘의 실시간 AI 트렌드 & 프롬프트
 
-📌 주제: {latest_trend.get('title')}
-💡 프롬프트 미리보기: {prompt_snippet}
+📌 주제: {latest_title}
+💡 프롬프트 미리보기: {latest_prompt}
 
 👉 자세히 보기: https://ai-trend-radar-iota.vercel.app/
 #AI #프롬프트 #챗GPT #개발자"""
