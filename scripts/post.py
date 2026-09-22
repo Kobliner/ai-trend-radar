@@ -13,16 +13,19 @@ def post_trend():
     try:
         with open("trends.json", "r", encoding="utf-8") as f:
             data = json.load(f)
-            latest_trend = data[0]  # 가장 최신 트렌드 선택
+            # 딕셔너리 구조에서 첫 번째 카테고리('dev')의 첫 번째 아이템 가져오기[cite: 2]
+            first_category = list(data.keys())[0]
+            latest_trend = data[first_category]["items"][0]
     except Exception as e:
         print(f"데이터를 읽지 못했습니다: {e}")
         return
 
-    # 트윗 내용 구성
+    # 트윗 내용 구성 (프롬프트 내용 일부 포함)
+    prompt_snippet = latest_trend.get('prompt', '')[:80] + "..."
     tweet_text = f"""🔥 오늘의 실시간 AI 트렌드 & 프롬프트
 
 📌 주제: {latest_trend.get('title')}
-💡 {latest_trend.get('summary', '실무에서 유용한 AI 프롬프트를 확인하세요!')}
+💡 프롬프트 미리보기: {prompt_snippet}
 
 👉 자세히 보기: https://ai-trend-radar-iota.vercel.app/
 #AI #프롬프트 #챗GPT #개발자"""
