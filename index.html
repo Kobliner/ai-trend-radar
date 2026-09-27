@@ -1,380 +1,151 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta name="naver-site-verification" content="72add1ff14e690ce5248539848d69e12e10d74fa" />
-  <meta name="google-site-verification" content="9EWIArtMHVxnghf2l7D17D4Goh_0-KuhWWyVlzzlkbM" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>실시간 AI 트렌드 & 프롬프트 레이더</title>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2097713212558648"
-     crossorigin="anonymous"></script>
-    <!-- Tailwind CSS CDN (태그 스타일 및 레이아웃 용도) -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>실시간 AI 트렌드 & 프롬프트</title>
     <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-sub: #94a3b8;
-            --accent: #38bdf8;
-            --accent-hover: #0ea5e9;
-            --border: #334155;
-        }
+        /* 기본 레이아웃 스타일 */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            background-color: #f4f6f8;
             margin: 0;
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        header h1 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            background: linear-gradient(90deg, #38bdf8, #818cf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        header p {
-            color: var(--text-sub);
+            color: #333;
         }
         .container {
-            width: 100%;
             max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
-        .tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
+        h1, h3 {
+            color: #111;
         }
-        .tab-btn {
-            background-color: var(--card-bg);
-            color: var(--text-sub);
-            border: 1px solid var(--border);
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.2s;
-        }
-        .tab-btn.active {
-            background-color: var(--accent);
-            color: #0f172a;
-            border-color: var(--accent);
-        }
-        .section-title {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            color: var(--accent);
-        }
-        .card-list {
+
+        /* 히스토리 아카이브 컨테이너 스타일 */
+        .history-container {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 10px;
+            margin-top: 15px;
         }
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px;
-            transition: transform 0.2s;
-        }
-        .card:hover {
-            transform: translateY(-2px);
-            border-color: var(--accent);
-        }
-        .card-header {
+
+        /* 키워드 형태의 카드 아이템 (PC 및 모바일 최적화) */
+        .history-keyword-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 14px 18px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            justify-content: space-between;
+            gap: 12px;
+            transition: all 0.2s ease;
         }
-        .rank-badge {
-            background-color: #334155;
-            color: var(--accent);
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: bold;
+
+        .history-keyword-card:hover {
+            border-color: #adb5bd;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
-        .status-badge {
-            font-size: 0.85rem;
-            color: #f43f5e;
-            background: rgba(244, 63, 94, 0.1);
-            padding: 4px 8px;
-            border-radius: 4px;
+
+        .history-text {
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+            word-break: break-all;
         }
-        .card h3 {
-            margin: 0 0 10px 0;
-            font-size: 1.1rem;
-        }
-        .prompt-box {
-            background-color: #0f172a;
-            border: 1px dashed var(--border);
-            padding: 12px;
-            border-radius: 6px;
-            font-family: monospace;
-            font-size: 0.9rem;
-            color: #cbd5e1;
-            margin-bottom: 15px;
-            white-space: pre-wrap;
-        }
+
+        /* 복사 버튼 스타일 */
         .copy-btn {
-            background-color: transparent;
-            color: var(--accent);
-            border: 1px solid var(--accent);
-            padding: 6px 12px;
+            background: #007bff;
+            color: white;
+            border: none;
             border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 13px;
             cursor: pointer;
-            font-size: 0.85rem;
             transition: background 0.2s;
+            white-space: nowrap;
         }
-        <!-- 구글 애드센스 광고 영역 -->
-<div class="my-6 flex justify-center overflow-hidden">
-    <ins class="adsbygoogle"
-         style="display:block; width:100%; max-width:728px; height:90px;"
-         data-ad-client="ca-pub-2097713212558648"
-         data-ad-slot="YOUR_AD_SLOT_ID"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-</div>
+
         .copy-btn:hover {
-            background-color: rgba(56, 189, 248, 0.1);
+            background: #0056b3;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1 id="site-title">⚡ Real-time AI Trend Radar</h1>
-        <p id="site-subtitle">공개된 퍼블릭 트렌드를 기반으로 실무에서 가장 주목받는 AI 질문과 프롬프트를 확인하세요.</p>
-    </header>
-
     <div class="container">
-        <!-- 탭 버튼 영역 -->
-        <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('dev', this)">개발&코드</button>
-            <button class="tab-btn" onclick="switchTab('business', this)">비즈니스</button>
-            <button class="tab-btn" onclick="switchTab('creative', this)">콘텐츠</button>
-            <button class="tab-btn" onclick="switchTab('sports', this)">스포츠</button>
-            <button class="tab-btn" onclick="switchTab('game', this)">게임</button>
-            <button class="tab-btn" onclick="switchTab('daily', this)">일상</button>
-        </div>
+        <h1>🔥 실시간 AI 트렌드 & 프롬프트</h1>
+        <p>오늘의 핵심 트렌드와 프롬프트 정보를 확인하세요.</p>
 
-        <!-- 컨텐츠 표시 영역 -->
-        <div id="content-area">
-            <p style="text-align: center; color: var(--text-sub);">데이터를 불러오는 중...</p>
-        </div>
+        <hr style="border: 0; height: 1px; background: #eee; margin: 20px 0;">
+
+        <!-- 이전 트렌드 아카이브 섹션 -->
+        <section class="archive-section">
+            <h3>📌 이전 트렌드 히스토리 (직전 1건)</h3>
+            <div id="history-archive-container" class="history-container">
+                <!-- 자바스크립트에 의해 키워드 카드가 동적으로 생성됩니다 -->
+            </div>
+        </section>
     </div>
 
-    <!-- 지난 트렌드 히스토리 아카이브 섹션 -->
-    <section class="max-w-4xl w-full mx-auto px-4 py-12 mt-12 border-t border-gray-800">
-        <div class="mb-8">
-            <h2 class="text-2xl font-bold text-white">
-                트렌드 아카이브 히스토리
-            </h2>
-            <p class="text-gray-400 text-sm mt-1">시간대별로 기록된 역대 AI 트렌드 키워드 모음입니다.</p>
-        </div>
-
-        <!-- 아카이브 카드가 동적으로 들어갈 자리 -->
-        <div id="history-container" class="flex flex-col gap-6">
-            <!-- 자바스크립트로 데이터가 렌더링됩니다 -->
-        </div>
-    </section>
-
     <script>
-        let trendData = {};
-        let currentTab = 'dev';
-
-        // trends.json 데이터 불러오기
-        async function loadTrends() {
-            try {
-                const response = await fetch('trends.json');
-                if (!response.ok) throw new Error('데이터를 불러오지 못했습니다.');
-                trendData = await response.json();
-                renderTab(currentTab);
-            } catch (error) {
-                document.getElementById('content-area').innerHTML = 
-                    `<p style="text-align: center; color: #f43f5e;">데이터 로드 실패: ${error.message}<br>로컬 서버 환경에서 실행 중인지 확인해주세요!</p>`;
+        // 히스토리 데이터 배열 (실제 데이터와 연동 시 이 배열에 데이터를 넣어주세요)
+        const sampleHistoryData = [
+            {
+                title: "이전 트렌드 1: 레거시 코드 현대화",
+                prompt: "이 구식 레거시 코드를 최신 표준에 맞게 변환해줘."
+            },
+            {
+                title: "직전 트렌드: LLM 기반 코드 리팩토링 및 성능 최적화",
+                prompt: "다음 코드를 분석하여 시간 복잡도와 공간 복잡도를 최적화해줘. 메모리 누수 가능성을 지적해줘."
             }
-        }
+        ];
 
-        // 탭 전환 함수
-        function switchTab(tabKey, btnElement) {
-            currentTab = tabKey;
-            
-            // 버튼 활성화 스타일 변경
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            if (btnElement) {
-                btnElement.classList.add('active');
-            }
+        // 히스토리 데이터를 받아와 키워드 형식으로 직전 1개만 렌더링하는 함수
+        function renderLatestHistory(historyDataArray) {
+            const container = document.getElementById('history-archive-container');
+            if (!container) return;
 
-            renderTab(tabKey);
-        }
+            container.innerHTML = ''; // 초기화
 
-        // 화면에 카드 리스트 그려주기
-        function renderTab(tabKey) {
-            const area = document.getElementById('content-area');
-            const data = trendData[tabKey];
-
-            if (!data) {
-                area.innerHTML = '<p>데이터가 없습니다.</p>';
+            if (!historyDataArray || historyDataArray.length === 0) {
+                container.innerHTML = '<p style="color: #888; font-size: 14px;">이전 히스토리가 없습니다.</p>';
                 return;
             }
 
-            let html = `<div class="section-title">${data.title}</div><div class="card-list">`;
+            // 가장 최근 직전 데이터 1개만 추출
+            const latestItem = historyDataArray[historyDataArray.length - 1];
 
-            data.items.forEach(item => {
-                html += `
-                    <div class="card">
-                        <div class="card-header">
-                            <span class="rank-badge">TOP ${item.rank}</span>
-                            <span class="status-badge">🔥 ${item.count}</span>
-                        </div>
-                        <h3>${item.title}</h3>
-                        <div class="prompt-box">${item.prompt}</div>
-                        <button class="copy-btn" onclick="copyPrompt(this, \`${item.prompt}\`)">프롬프트 복사하기</button>
-                    </div>
-                `;
-            });
-
-            html += `</div>`;
-            area.innerHTML = html;
-        }
-
-        // 클립보드 복사 기능
-        function copyPrompt(button, text) {
-            navigator.clipboard.writeText(text).then(() => {
-                const originalText = button.innerText;
-                button.innerText = '✨ 복사 완료!';
-                button.style.backgroundColor = 'var(--accent)';
-                button.style.color = '#0f172a';
-                setTimeout(() => {
-                    button.innerText = originalText;
-                    button.style.backgroundColor = 'transparent';
-                    button.style.color = 'var(--accent)';
-                }, 1500);
-            }).catch(err => {
-                alert('복사 실패: ' + err);
-            });
-        }
-
-        // 페이지 로드 시 메인 데이터 가져오기 실행
-        loadTrends();
-    </script>
-
-    <script>
-        // 다국어 딕셔너리 데이터 정의
-        const translations = {
-            ko: {
-                title: "⚡ Real-time AI Trend Radar",
-                subtitle: "공개된 퍼블릭 트렌드를 기반으로 실무에서 가장 주목받는 AI 질문과 프롬프트를 확인하세요."
-            },
-            en: {
-                title: "⚡ Real-time AI Trend Radar",
-                subtitle: "Discover the most trending AI questions and prompts based on public trends."
-            }
-        };
-
-        // 언어 자동 적용 함수
-        function initLanguage() {
-            const userLang = navigator.language.startsWith("ko") ? "ko" : "en";
-            const t = translations[userLang] || translations.ko;
+            // 키워드 카드 HTML 생성
+            const card = document.createElement('div');
+            card.className = 'history-keyword-card';
             
-            document.getElementById("site-title").innerText = t.title;
-            document.getElementById("site-subtitle").innerText = t.subtitle;
+            card.innerHTML = `
+                <span class="history-text">💡 ${latestItem.title}</span>
+                <button class="copy-btn" onclick="copyToClipboard('${latestItem.prompt}')">프롬프트 복사</button>
+            `;
+
+            container.appendChild(card);
         }
 
-        window.addEventListener("DOMContentLoaded", initLanguage);
-    </script>
-
-    <script>
-        // 아카이브 히스토리를 카테고리별 태그(배지) 형태로 렌더링
-        async function loadTrendHistory() {
-            try {
-                const response = await fetch('history.json');
-                if (!response.ok) return;
-                
-                const historyData = await response.json();
-                const container = document.getElementById('history-container');
-                if (!container) return;
-
-                container.innerHTML = '';
-
-                const categoryNames = {
-                    "dev": "개발 & 코드",
-                    "business": "비즈니스",
-                    "creative": "콘텐츠 기획",
-                    "sports": "스포츠",
-                    "game": "게임",
-                    "daily": "일상"
-                };
-
-                historyData.forEach(entry => {
-                    const card = document.createElement('div');
-                    card.className = "bg-gray-900 border border-gray-800 rounded-xl p-5 hover:border-indigo-500/50 transition-all";
-
-                    let htmlContent = `
-                        <div class="flex items-center justify-between mb-4 pb-2 border-b border-gray-800">
-                            <span class="text-xs font-semibold text-indigo-400 bg-indigo-950/60 px-2.5 py-1 rounded-md">
-                                🕒 ${entry.timestamp}
-                            </span>
-                        </div>
-                        <div class="space-y-4">
-                    `;
-
-                    if (entry.keywords) {
-                        for (const [catKey, titles] of Object.entries(entry.keywords)) {
-                            const catDisplayName = categoryNames[catKey] || catKey;
-                            
-                            if (Array.isArray(titles) && titles.length > 0) {
-                                htmlContent += `
-                                    <div>
-                                        <div class="text-xs font-bold text-gray-400 mb-1.5">${catDisplayName}</div>
-                                        <div class="flex flex-wrap gap-1.5">
-                                `;
-                                titles.forEach(title => {
-                                    htmlContent += `
-                                        <span class="px-2.5 py-1 text-xs font-medium bg-gray-800 text-sky-300 rounded-full border border-gray-700 hover:border-sky-500 transition-all cursor-default shadow-sm">
-                                            #${title}
-                                        </span>
-                                    `;
-                                });
-                                htmlContent += `
-                                        </div>
-                                    </div>
-                                `;
-                            }
-                        }
-                    }
-
-                    htmlContent += `</div>`;
-                    card.innerHTML = htmlContent;
-                    container.appendChild(card);
-                });
-
-            } catch (error) {
-                console.error("Failed to load trend history:", error);
-            }
+        // 클립보드 복사 기능 함수
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('프롬프트가 클립보드에 복사되었습니다!');
+            }).catch(err => {
+                console.error('복사 실패:', err);
+            });
         }
 
-        // 페이지가 로드될 때 아카이브 불러오기 실행
-        document.addEventListener('DOMContentLoaded', () => {
-            loadTrendHistory();
-        });
+        // 페이지 로드 시 히스토리 렌더링 실행
+        window.onload = function() {
+            renderLatestHistory(sampleHistoryData);
+        };
     </script>
 </body>
 </html>
