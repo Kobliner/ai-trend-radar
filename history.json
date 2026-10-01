@@ -1,5 +1,52 @@
 [
   {
+    "timestamp": "2026-10-01 10:18 (UTC)",
+    "keywords": {
+      "dev": [
+        "AI 기반 레거시 코드 현대화 (Legacy Code Modernization)",
+        "API 연동을 위한 보일러플레이트 자동 생성 (API Boilerplate)",
+        "단위 테스트 코드 자동 작성 (Auto-generating Unit Tests)",
+        "CI/CD 파이프라인 최적화 (CI/CD Pipeline Optimization)",
+        "SQL 쿼리 성능 튜닝 (SQL Query Performance Tuning)"
+      ],
+      "business": [
+        "원페이지 제안서 초안 작성 (One-page Proposal Drafting)",
+        "시장 경쟁사 분석 리포트 요약 (Competitor Analysis Summary)",
+        "주간 업무 보고 기반 OKR 설정 (Weekly Report to OKR)",
+        "회의록 요약 및 Action Item 추출 (Meeting Minutes Summary)",
+        "맞춤형 콜드 이메일 템플릿 생성 (Tailored Cold Email)"
+      ],
+      "creative": [
+        "숏폼 비디오(TikTok/Reels) 대본 기획 (Short-form Scripting)",
+        "뉴스레터 오프닝 & 제목 에이비 테스트 (Newsletter Title A/B)",
+        "블로그 SEO 최적화 글 구조 설계 (SEO-optimized Blog Outline)",
+        "브랜드 스토리텔링 및 페르소나 설정 (Brand Storytelling)",
+        "소셜 미디어 주간 콘텐츠 달력 생성 (Weekly SNS Calendar)"
+      ],
+      "sports": [
+        "체형 맞춤형 점진적 과부하 운동 가이드 (Custom Workout Routine)",
+        "축구 경기 전술 분석 및 상대 대응책 수립 (Tactical Analysis)",
+        "피트니스 대회 준비용 식단 구성 (Fitness Diet Plan)",
+        "러닝 하프 마라톤 초보자 8주 훈련 계획 (Half Marathon Training)",
+        "스포츠 동호회 회원 모집 홍보 카피 (Club Recruitment Copy)"
+      ],
+      "game": [
+        "RPG 퀘스트 라인 및 선택지 설계 (RPG Questline Design)",
+        "인디 게임 기획 및 핵심 루프 설정 (Indie Game Core Loop)",
+        "NPC 성격 및 대화 분기 시나리오 (NPC Dialogue Branching)",
+        "멀티플레이어 게임 밸런스 패치 노트 (Balance Patch Notes)",
+        "게임 레벨 디자인 및 난이도 곡선 설계 (Level Design)"
+      ],
+      "daily": [
+        "냉장고 파먹기 레시피 추천 (Fridge-Emptying Recipe)",
+        "3박 4일 도쿄 여행 동선 최적화 (Detailed Tokyo Itinerary)",
+        "미니멀리스트 원룸 인테리어 가이드 (Minimalist Room Interior)",
+        "직장인 갓생 살기 주간 루틴 설계 (Weekly Routine Planner)",
+        "개인 재무 포트폴리오 자산 배분 조언 (Asset Allocation)"
+      ]
+    }
+  },
+  {
     "timestamp": "2026-10-01 04:12 (UTC)",
     "keywords": {
       "dev": [
