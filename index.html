@@ -2,13 +2,11 @@
 <html lang="ko">
 <head>
     <meta name="naver-site-verification" content="72add1ff14e690ce5248539848d69e12e10d74fa" />
-  <meta name="google-site-verification" content="9EWIArtMHVxnghf2l7D17D4Goh_0-KuhWWyVlzzlkbM" />
+    <meta name="google-site-verification" content="9EWIArtMHVxnghf2l7D17D4Goh_0-KuhWWyVlzzlkbM" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>실시간 AI 트렌드 & 프롬프트 레이더</title>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2097713212558648"
-     crossorigin="anonymous"></script>
-    <!-- Tailwind CSS CDN (태그 스타일 및 레이아웃 용도) -->
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
@@ -33,9 +31,10 @@
         header {
             text-align: center;
             margin-bottom: 30px;
+            margin-top: 20px;
         }
         header h1 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin-bottom: 10px;
             background: linear-gradient(90deg, #38bdf8, #818cf8);
             -webkit-background-clip: text;
@@ -43,6 +42,7 @@
         }
         header p {
             color: var(--text-sub);
+            font-size: 1.05rem;
         }
         .container {
             width: 100%;
@@ -144,23 +144,21 @@
 </head>
 <body>
 
-    <!-- [제목 상단 광고 영역] -->
-    <div class="mb-6 flex justify-center overflow-hidden w-full max-w-4xl px-4">
-        <ins class="adsbygoogle"
-             style="display:block; width:100%; max-width:728px; height:90px;"
-             data-ad-client="ca-pub-2097713212558648"
-             data-ad-slot="YOUR_AD_SLOT_ID"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
-
     <header>
         <h1 id="site-title">⚡ Real-time AI Trend Radar</h1>
-        <p id="site-subtitle">공개된 퍼블릭 트렌드를 기반으로 실무에서 가장 주목받는 AI 질문과 프롬프트를 확인하세요.</p>
+        <p id="site-subtitle">퍼블릭 트렌드와 실무에서 가장 주목받는 AI 질문 및 프롬프트를 한눈에 파악하는 정보 플랫폼입니다.</p>
     </header>
+
+    <!-- 구글 봇이 인식할 수 있는 풍부한 텍스트 콘텐츠(소개 섹션) -->
+    <section class="max-w-3xl w-full mx-auto px-4 mb-8 bg-slate-900/60 border border-slate-800 rounded-2xl p-6 shadow-md">
+        <h2 class="text-lg font-semibold text-sky-400 mb-3">📌 실시간 AI 트렌드 레이더 이용 가이드</h2>
+        <p class="text-slate-300 text-sm leading-relaxed mb-3">
+            본 사이트는 개발, 비즈니스, 콘텐츠 기획, 스포츠, 게임, 일상 등 다양한 분야에서 실시간으로 대두되는 AI 관련 핵심 키워드와 검증된 프롬프트를 수집 및 제공합니다. 단순 검색을 넘어 실무 프로덕티비티를 극대화할 수 있는 고품질 프롬프트를 복사하여 즉시 활용해 보세요.
+        </p>
+        <p class="text-slate-400 text-xs leading-relaxed">
+            * 각 카테고리별 탭을 클릭하여 최신 트렌드 순위를 확인할 수 있으며, 하단 아카이브를 통해 이전 기록을 카테고리별로 대조할 수 있습니다.
+        </p>
+    </section>
 
     <div class="container">
         <!-- 탭 버튼 영역 -->
@@ -180,12 +178,12 @@
     </div>
 
     <!-- 지난 트렌드 히스토리 아카이브 섹션 -->
-    <section class="max-w-4xl w-full mx-auto px-4 py-12 mt-12 border-t border-gray-800">
-        <div class="mb-8">
-            <h2 class="text-2xl font-bold text-white" id="history-section-title">
-                이전 트렌드 히스토리
+    <section class="max-w-4xl w-full mx-auto px-4 py-10 mt-12 border-t border-gray-800">
+        <div class="mb-6">
+            <h2 class="text-xl font-bold text-white" id="history-section-title">
+                이전 트렌드 히스토리 아카이브
             </h2>
-            <p class="text-gray-400 text-sm mt-1">선택한 카테고리의 직전 기록된 역대 AI 트렌드 키워드입니다.</p>
+            <p class="text-gray-400 text-sm mt-1">선택한 카테고리의 직전 기록된 역대 AI 트렌드 키워드 및 데이터 로그입니다.</p>
         </div>
 
         <!-- 아카이브 카드가 동적으로 들어갈 자리 -->
@@ -193,19 +191,6 @@
             <!-- 자바스크립트로 데이터가 렌더링됩니다 -->
         </div>
     </section>
-
-    <!-- [맨 하단 광고 영역] -->
-    <div class="my-8 flex justify-center overflow-hidden w-full max-w-4xl px-4">
-        <ins class="adsbygoogle"
-             style="display:block; width:100%; max-width:728px; height:90px;"
-             data-ad-client="ca-pub-2097713212558648"
-             data-ad-slot="YOUR_AD_SLOT_ID"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
 
     <script>
         let trendData = {};
@@ -286,7 +271,7 @@
             area.innerHTML = html;
         }
 
-        // 선택한 탭에 맞는 이전 히스토리 직전 1건만 그려주기
+        // 선택한 탭에 맞는 '이전' 히스토리 데이터 그려주기 (index 1: 직전 기록)
         function renderHistory(tabKey) {
             const container = document.getElementById('history-container');
             if (!container) return;
@@ -294,9 +279,10 @@
             container.innerHTML = '';
             const catDisplayName = categoryNames[tabKey] || tabKey;
 
-            // 히스토리 데이터 중 가장 최신 항목(index 0) 가져오기
-            if (historyData && historyData.length > 0) {
-                const entry = historyData[0];
+            // 히스토리 데이터가 2개 이상일 때 index 1(이전 기록)을 가져옴 (0은 최신 현재 데이터)
+            // 만약 기록이 1개뿐이라면 이전 데이터가 아직 없는 상태
+            if (historyData && historyData.length > 1) {
+                const entry = historyData[1]; // 직전 기록
                 
                 if (entry.keywords && entry.keywords[tabKey]) {
                     const titles = entry.keywords[tabKey];
@@ -308,7 +294,7 @@
                         let htmlContent = `
                             <div class="flex items-center justify-between mb-4 pb-3 border-b border-gray-800">
                                 <span class="text-xs font-semibold text-indigo-400 bg-indigo-950/60 px-3 py-1.5 rounded-md">
-                                    🕒 직전 기록 시점: ${entry.timestamp}
+                                    🕒 이전 기록 시점: ${entry.timestamp}
                                 </span>
                                 <span class="text-xs font-bold text-gray-300">${catDisplayName} 히스토리</span>
                             </div>
@@ -340,10 +326,10 @@
                 }
             }
 
-            // 해당 카테고리 히스토리가 없을 경우
+            // 이전 히스토리가 아직 충분히 쌓이지 않았을 경우
             container.innerHTML = `
                 <div class="bg-gray-900 border border-gray-800 rounded-xl p-6 text-center text-gray-400 text-sm">
-                    ${catDisplayName} 카테고리의 이전 히스토리 데이터가 없습니다.
+                    ${catDisplayName} 카테고리의 이전 히스토리 데이터가 아직 누적되지 않았습니다. (다음 갱신부터 표시됩니다)
                 </div>
             `;
         }
@@ -367,31 +353,6 @@
 
         // 페이지 로드 시 데이터 가져오기 실행
         loadAllData();
-    </script>
-
-    <script>
-        // 다국어 딕셔너리 데이터 정의
-        const translations = {
-            ko: {
-                title: "⚡ Real-time AI Trend Radar",
-                subtitle: "공개된 퍼블릭 트렌드를 기반으로 실무에서 가장 주목받는 AI 질문과 프롬프트를 확인하세요."
-            },
-            en: {
-                title: "⚡ Real-time AI Trend Radar",
-                subtitle: "Discover the most trending AI questions and prompts based on public trends."
-            }
-        };
-
-        // 언어 자동 적용 함수
-        function initLanguage() {
-            const userLang = navigator.language.startsWith("ko") ? "ko" : "en";
-            const t = translations[userLang] || translations.ko;
-            
-            document.getElementById("site-title").innerText = t.title;
-            document.getElementById("site-subtitle").innerText = t.subtitle;
-        }
-
-        window.addEventListener("DOMContentLoaded", initLanguage);
     </script>
 </body>
 </html>
