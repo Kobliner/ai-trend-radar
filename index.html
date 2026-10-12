@@ -5,7 +5,30 @@
     <meta name="google-site-verification" content="9EWIArtMHVxnghf2l7D17D4Goh_0-KuhWWyVlzzlkbM" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>실시간 AI 트렌드 & 프롬프트 레이더</title>
+    <title>실시간 AI 트렌드 & 프롬프트 레이더 | AI Trend Radar</title>
+    <meta name="description" content="개발, 비즈니스, 콘텐츠 기획, 게임, 일상 분야별 실시간 AI 트렌드 키워드와 검증된 프롬프트를 한눈에 파악하는 정보 공유 플랫폼입니다." />
+    <meta name="keywords" content="AI 트렌드, 프롬프트, ChatGPT 프롬프트, AI 질문 가이드, 생성형 AI, 실무 프롬프트" />
+
+    <!-- Open Graph (OG Meta Tags) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="실시간 AI 트렌드 & 프롬프트 레이더" />
+    <meta property="og:description" content="퍼블릭 트렌드와 실무에서 가장 주목받는 AI 질문 및 프롬프트를 한눈에 확인하세요." />
+    <meta property="og:url" content="https://ai-trend-radar-iota.vercel.app/" />
+
+    <!-- JSON-LD 구조화 데이터 (구글 봇 수집 강화) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Real-time AI Trend Radar",
+      "url": "https://ai-trend-radar-iota.vercel.app/",
+      "description": "실시간 AI 트렌드 키워드 분석 및 실무 프롬프트 레이더 서비스",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "All",
+      "inLanguage": "ko"
+    }
+    </script>
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -142,72 +165,88 @@
         }
     </style>
 </head>
-<body>
+<body class="w-full min-h-screen flex flex-col justify-between">
 
-    <header>
-        <h1 id="site-title">⚡ Real-time AI Trend Radar</h1>
-        <p id="site-subtitle">퍼블릭 트렌드와 실무에서 가장 주목받는 AI 질문 및 프롬프트를 한눈에 파악하는 종합 정보 플랫폼입니다.</p>
-    </header>
+    <div class="w-full flex flex-col items-center">
+        <header>
+            <h1 id="site-title">⚡ Real-time AI Trend Radar</h1>
+            <p id="site-subtitle">퍼블릭 트렌드와 실무에서 가장 주목받는 AI 질문 및 프롬프트를 한눈에 파악하는 종합 정보 플랫폼입니다.</p>
+        </header>
 
-    <!-- 구글 봇이 좋아하는 풍부한 본문 및 가이드 아티클 섹션 (상단) -->
-    <article class="max-w-3xl w-full mx-auto px-6 py-6 mb-8 bg-slate-900/80 border border-slate-800 rounded-2xl shadow-lg leading-relaxed text-slate-300">
-        <h2 class="text-xl font-bold text-sky-400 mb-4">📖 실무 프로덕티비티를 높이는 AI 프롬프트 가이드</h2>
-        <p class="text-sm mb-4">
-            현대 실무 환경에서 인공지능(AI) 모델을 얼마나 효과적으로 다루느냐는 개인과 조직의 생산성을 가르는 핵심 역량이 되었습니다. 본 <strong class="text-white">실시간 AI 트렌드 레이더</strong>는 전 세계 개발자, 기획자, 비즈니스 전문가들이 실시간으로 주목하고 있는 유용한 AI 질문 패턴과 검증된 프롬프트를 수집하여 제공합니다.
-        </p>
-        <h3 class="text-md font-semibold text-sky-300 mt-4 mb-2">💡 주요 카테고리별 활용 목적</h3>
-        <ul class="list-disc list-inside text-sm space-y-2 mb-4 text-slate-300">
-            <li><strong class="text-white">개발 & 코드:</strong> 복잡한 알고리즘 설계, 리팩토링, 디버깅 과정에서 시간 단축을 돕는 최적의 개발 프롬프트 공유</li>
-            <li><strong class="text-white">비즈니스 & 기획:</strong> 시장 분석, 전략 수립, 마케팅 문구 작성 등 비즈니스 성장을 가속화하는 실무형 질문 가이드</li>
-            <li><strong class="text-white">콘텐츠 & 게임·일상:</strong> 창작 활동과 일상 속 효율성을 극대화하는 다양한 생성형 AI 활용 사례 조명</li>
-        </ul>
-        <p class="text-xs text-slate-400">
-            * 상단의 카테고리 탭을 통해 분야별 실시간 인기 프롬프트를 바로 확인하고 복사할 수 있으며, 하단 아카이브를 통해 이전 기록을 카테고리별로 대조할 수 있습니다.
-        </p>
-    </article>
+        <!-- 구글 봇이 좋아하는 풍부한 본문 및 가이드 아티클 섹션 (상단) -->
+        <article class="max-w-3xl w-full mx-auto px-6 py-6 mb-8 bg-slate-900/80 border border-slate-800 rounded-2xl shadow-lg leading-relaxed text-slate-300">
+            <h2 class="text-xl font-bold text-sky-400 mb-4">📖 실무 프로덕티비티를 높이는 AI 프롬프트 가이드</h2>
+            <p class="text-sm mb-4">
+                현대 실무 환경에서 인공지능(AI) 모델을 얼마나 효과적으로 다루느냐는 개인과 조직의 생산성을 가르는 핵심 역량이 되었습니다. 본 <strong class="text-white">실시간 AI 트렌드 레이더</strong>는 전 세계 개발자, 기획자, 비즈니스 전문가들이 실시간으로 주목하고 있는 유용한 AI 질문 패턴과 검증된 프롬프트를 수집하여 제공합니다.
+            </p>
+            <h3 class="text-md font-semibold text-sky-300 mt-4 mb-2">💡 주요 카테고리별 활용 목적</h3>
+            <ul class="list-disc list-inside text-sm space-y-2 mb-4 text-slate-300">
+                <li><strong class="text-white">개발 & 코드:</strong> 복잡한 알고리즘 설계, 리팩토링, 디버깅 과정에서 시간 단축을 돕는 최적의 개발 프롬프트 공유</li>
+                <li><strong class="text-white">비즈니스 & 기획:</strong> 시장 분석, 전략 수립, 마케팅 문구 작성 등 비즈니스 성장을 가속화하는 실무형 질문 가이드</li>
+                <li><strong class="text-white">콘텐츠 & 게임·일상:</strong> 창작 활동과 일상 속 효율성을 극대화하는 다양한 생성형 AI 활용 사례 조명</li>
+            </ul>
+            <p class="text-xs text-slate-400">
+                * 상단의 카테고리 탭을 통해 분야별 실시간 인기 프롬프트를 바로 확인하고 복사할 수 있으며, 하단 아카이브를 통해 이전 기록을 카테고리별로 대조할 수 있습니다.
+            </p>
+        </article>
 
-    <div class="container">
-        <!-- 탭 버튼 영역 -->
-        <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('dev', this)">개발&코드</button>
-            <button class="tab-btn" onclick="switchTab('business', this)">비즈니스</button>
-            <button class="tab-btn" onclick="switchTab('creative', this)">콘텐츠</button>
-            <button class="tab-btn" onclick="switchTab('sports', this)">스포츠</button>
-            <button class="tab-btn" onclick="switchTab('game', this)">게임</button>
-            <button class="tab-btn" onclick="switchTab('daily', this)">일상</button>
+        <div class="container">
+            <!-- 탭 버튼 영역 -->
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('dev', this)">개발&코드</button>
+                <button class="tab-btn" onclick="switchTab('business', this)">비즈니스</button>
+                <button class="tab-btn" onclick="switchTab('creative', this)">콘텐츠</button>
+                <button class="tab-btn" onclick="switchTab('sports', this)">스포츠</button>
+                <button class="tab-btn" onclick="switchTab('game', this)">게임</button>
+                <button class="tab-btn" onclick="switchTab('daily', this)">일상</button>
+            </div>
+
+            <!-- 컨텐츠 표시 영역 -->
+            <div id="content-area">
+                <p style="text-align: center; color: var(--text-sub);">데이터를 불러오는 중...</p>
+            </div>
         </div>
 
-        <!-- 컨텐츠 표시 영역 -->
-        <div id="content-area">
-            <p style="text-align: center; color: var(--text-sub);">데이터를 불러오는 중...</p>
-        </div>
+        <!-- 지난 트렌드 히스토리 아카이브 섹션 (최근 3회차) -->
+        <section class="max-w-4xl w-full mx-auto px-4 py-10 mt-12 border-t border-gray-800">
+            <div class="mb-6">
+                <h2 class="text-xl font-bold text-white" id="history-section-title">
+                    이전 트렌드 히스토리 아카이브 (최근 3회차)
+                </h2>
+                <p class="text-gray-400 text-sm mt-1">카테고리별로 축적된 이전 3회차 분량의 AI 트렌드 키워드 히스토리를 대조하고 흐름을 분석합니다.</p>
+            </div>
+
+            <!-- 아카이브 카드가 동적으로 들어갈 자리 -->
+            <div id="history-container" class="flex flex-col gap-6">
+                <!-- 자바스크립트로 데이터가 렌더링됩니다 -->
+            </div>
+        </section>
+
+        <!-- 추가 설명 아티클 (하단) -->
+        <section class="max-w-3xl w-full mx-auto px-6 py-6 mt-10 bg-slate-900/60 border border-slate-800 rounded-2xl text-slate-400 text-xs leading-relaxed">
+            <h4 class="font-semibold text-slate-300 text-sm mb-2">📌 웹사이트 운영 원칙 및 데이터 수집 안내</h4>
+            <p class="mb-2">
+                본 플랫폼은 퍼블릭 오픈 데이터 및 커뮤니티 트렌드 시그널을 바탕으로 AI 프롬프트 트렌드를 투명하게 집계합니다. 무단 복제 및 상업적 도용을 금하며, 실무 연구 및 개인 학습 목적의 프롬프트 벤치마킹 용도로 자유롭게 활용하실 수 있습니다.
+            </p>
+            <p>
+                관련 피드백이나 개선 사항이 있으신 경우 언제든지 운영자 채널을 통해 문의해 주시기 바랍니다. 지속적인 업데이트를 통해 더 유익한 AI 생태계 정보를 전달해 드리겠습니다.
+            </p>
+        </section>
     </div>
 
-    <!-- 지난 트렌드 히스토리 아카이브 섹션 (최근 3회차) -->
-    <section class="max-w-4xl w-full mx-auto px-4 py-10 mt-12 border-t border-gray-800">
-        <div class="mb-6">
-            <h2 class="text-xl font-bold text-white" id="history-section-title">
-                이전 트렌드 히스토리 아카이브 (최근 3회차)
-            </h2>
-            <p class="text-gray-400 text-sm mt-1">카테고리별로 축적된 이전 3회차 분량의 AI 트렌드 키워드 히스토리를 대조하고 흐름을 분석합니다.</p>
+    <!-- 신뢰도를 높여주는 정식 푸터(Footer) 영역 -->
+    <footer class="w-full mt-16 pt-8 pb-12 border-t border-slate-800 bg-slate-950/80 text-center text-xs text-slate-500">
+        <div class="max-w-4xl mx-auto px-4 flex flex-col items-center gap-3">
+            <div class="flex flex-wrap justify-center gap-4 text-slate-400 font-medium">
+                <a href="privacy.html" class="hover:text-sky-400 transition-colors underline">개인정보처리방침</a>
+                <span class="text-slate-700">|</span>
+                <span class="text-slate-400">서비스 이용 안내</span>
+                <span class="text-slate-700">|</span>
+                <span class="text-slate-400">AI Trend Radar Platform</span>
+            </div>
+            <p>© 2026 Real-time AI Trend Radar. All rights reserved.</p>
         </div>
-
-        <!-- 아카이브 카드가 동적으로 들어갈 자리 -->
-        <div id="history-container" class="flex flex-col gap-6">
-            <!-- 자바스크립트로 데이터가 렌더링됩니다 -->
-        </div>
-    </section>
-
-    <!-- 구글 봇의 콘텐츠 신뢰도를 높이기 위한 추가 설명 아티클 (하단) -->
-    <section class="max-w-3xl w-full mx-auto px-6 py-6 mt-10 bg-slate-900/60 border border-slate-800 rounded-2xl text-slate-400 text-xs leading-relaxed">
-        <h4 class="font-semibold text-slate-300 text-sm mb-2">📌 웹사이트 운영 원칙 및 데이터 수집 안내</h4>
-        <p class="mb-2">
-            본 플랫폼은 퍼블릭 오픈 데이터 및 커뮤니티 트렌드 시그널을 바탕으로 AI 프롬프트 트렌드를 투명하게 집계합니다. 무단 복제 및 상업적 도용을 금하며, 실무 연구 및 개인 학습 목적의 프롬프트 벤치마킹 용도로 자유롭게 활용하실 수 있습니다.
-        </p>
-        <p>
-            관련 피드백이나 개선 사항이 있으신 경우 언제든지 운영자 채널을 통해 문의해 주시기 바랍니다. 지속적인 업데이트를 통해 더 유익한 AI 생태계 정보를 전달해 드리겠습니다.
-        </p>
-    </section>
+    </footer>
 
     <script>
         let trendData = {};
@@ -296,9 +335,8 @@
             container.innerHTML = '';
             const catDisplayName = categoryNames[tabKey] || tabKey;
 
-            // historyData에서 index 1부터 시작하여 최대 3개의 이전 기록 추출 (1, 2, 3)
             if (historyData && historyData.length > 1) {
-                const pastEntries = historyData.slice(1, 4); // 최대 3개 항목 추출
+                const pastEntries = historyData.slice(1, 4);
                 let renderedCount = 0;
 
                 pastEntries.forEach((entry, idx) => {
@@ -349,7 +387,6 @@
                 }
             }
 
-            // 이전 히스토리가 아직 충분히 쌓이지 않았을 경우
             container.innerHTML = `
                 <div class="bg-gray-900 border border-gray-800 rounded-xl p-6 text-center text-gray-400 text-sm">
                     ${catDisplayName} 카테고리의 이전 히스토리 데이터가 아직 누적되지 않았습니다.
